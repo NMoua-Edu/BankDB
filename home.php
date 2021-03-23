@@ -63,7 +63,9 @@
     <div class="sidenav">
     	<?php
 				if (isset($_SESSION["username"])) {
-					echo "<p> HELLO there". $_SESSION["username"]. "</p>";
+					echo "<a> Wellcome ". $_SESSION["username"]. "</a>";
+                    #acctype is the variable for what privilege a user can have 
+                    # 1 is employee 2 is customer 
 					echo "<p> You are ". $_SESSION["acctype"]. "</p>";
 					echo "<a href='home.php'>Home</a>";
         			echo "<a href=>Open New Account</a>";
