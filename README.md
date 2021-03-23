@@ -9,4 +9,4 @@ How to get it working:
   5. import my schema to mysqlworkbench
   6. change any of the server info under server.php in the includes folder if needed
   7. launch Xampp and run the Apache server
-  8. finally launch any web browser and type localhost/BankDB into the url. 
+  8. finally launch any web browser and type localhost/bankDB into the url. 
