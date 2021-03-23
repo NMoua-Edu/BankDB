@@ -30,7 +30,7 @@
                   </div>
                   <button type="submit" class="btn btn-black" name="submit">Login</button>
 									</form>
-									<form action ="signup.php">
+									<form action="signup.php" method="POST">
                   <button type="submit" class="btn btn-secondary" name ="submit">Register</button>
                </form>
 							 <?php
