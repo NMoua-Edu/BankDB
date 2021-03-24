@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="includes/loginreg.css">
 </head>
 <body>
-		<section class ="login-form">
+	<section class ="login-form">
 		<div class="sidenav">
          <div class="login-main-text">
             <h2>Banking System<br> Login Page</h2>

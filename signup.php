@@ -2,27 +2,56 @@
 include_once 'header.php';
 
 ?>
-
-	<section class ="signup-form">
-		<h2>Create and Online Account</h2>
-		<h3>Basic information</h3>
-		<center>
-		<form action = "includes/signup-inc.php" method="POST">
-			<select type = "text" name = "acctype" >
-				<option value= "customer">Customer</option>
-				<option value = "employee"> Employee</option>
-			</select>
-			<input type="text" name="username" placeholder= "Username..">
-			<input type="password" name="pwd" placeholder= "Password..">
-			<input type="password" name="pwdcheck" placeholder= "Confirm Password..">
-			<input type="text" name="fname" placeholder= "First Name..">
-			<input type="text" name="lname" placeholder= "Last Name..">
-			<input type="text" name="email" placeholder= "Email..">
-
-			<button type="submit" name="submit">Sign Up</button>
-		</form>
-		</center>
-				<?php
+	<link rel="stylesheet" href="includes/loginreg.css">
+	<section class ="login-form">
+		<div class="sidenav">
+         <div class="login-main-text">
+            <h2>Banking System<br> Login Page</h2>
+            <p>Login or register from here to access.</p>
+         </div>
+      </div>
+      <div class="main">
+         <div class="col-md-6 col-sm-12">
+            <div class="register-form">
+							<form action = "includes/signup-inc.php" method="POST">
+                  <div class="form-group">
+									<select type = "text" name = "acctype" >
+										<option value= "customer">Customer</option>
+										<option value = "employee"> Employee</option>
+									</select>
+									</div>
+									<div class ="form-group">
+                     <label>Username:</label>
+										 <input type="text" class = "form-control" name="username" placeholder= "Username..">
+                  </div>
+									<div class ="form-group">
+                     <label>Password:</label>
+										 <input type="password" class= "form-control" name="pwd" placeholder= "Password..">
+                  </div>
+									<div class ="form-group">
+                     <label>Confrim Password:</label>
+										 <input type="password" class = "form-control" name="pwdcheck" placeholder= "Confirm Password..">
+                  </div>
+									<div class ="form-group">
+                     <label>First Name:</label>
+										 <input type="text"  class= "form-control" name="fname" placeholder= "First Name..">
+                  </div>
+									<div class ="form-group">
+                     <label>Last Name:</label>
+										 <input type="text" class= "form-control" name="lname" placeholder= "Last Name..">
+                  </div>
+									<div class ="form-group">
+                     <label>Email:</label>
+										 <input type="text" class= "form-control" name="email" placeholder= "Email..">
+                  </div>
+									<button type="submit" class="btn btn-secondary" name ="submit">Register</button>
+									</form>
+									<form action="login.php" method="POST">
+										<label>Already have an account?</label>
+										<br>
+                  <button type="submit" class="btn btn-black" name="submit">Login</button>
+               </form>
+							 <?php
 			if(isset($_GET["error"])){
 		 		if ($_GET["error"] == "emptyinput") {
 		 			echo"<p>Fill in all fields</p>";
@@ -51,4 +80,7 @@ include_once 'header.php';
 
 		  }
 		 ?>
+            </div>
+         </div>
+      </div>
 	</section>
