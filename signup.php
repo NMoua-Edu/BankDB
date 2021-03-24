@@ -6,7 +6,7 @@ include_once 'header.php';
 	<section class ="login-form">
 		<div class="sidenav">
          <div class="login-main-text">
-            <h2>Banking System<br> Register</h2>
+            <h2>Banking System<br> Register Page</h2>
             <p>Register here to gain access.</p>
          </div>
       </div>
