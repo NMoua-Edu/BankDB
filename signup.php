@@ -6,8 +6,8 @@ include_once 'header.php';
 	<section class ="login-form">
 		<div class="sidenav">
          <div class="login-main-text">
-            <h2>Banking System<br> Login Page</h2>
-            <p>Login or register from here to access.</p>
+            <h2>Banking System<br> Register</h2>
+            <p>Register here to gain access.</p>
          </div>
       </div>
       <div class="main">
@@ -47,39 +47,40 @@ include_once 'header.php';
 									<button type="submit" class="btn btn-secondary" name ="submit">Register</button>
 									</form>
 									<form action="login.php" method="POST">
+									<?php
+										if(isset($_GET["error"])){
+											if ($_GET["error"] == "emptyinput") {
+												echo"<p style='color: #B22222;'>Fill in all fields</p>";
+											}
+											else if ($_GET["error"] == "invalidusername"){
+												echo"<p style='color: #B22222;'>Choose a proper username</p>";
+
+											}
+											else if ($_GET["error"] == "invalidemail"){
+												echo"<p style='color: #B22222;'>Choose a proper email</p>";
+
+											}
+											else if ($_GET["error"] == "passwordsdontmatch"){
+												echo"<p style='color: #B22222;'>Passwords does not match</p>";
+
+											}
+											else if ($_GET["error"] == "usernametaken"){
+												echo"<p style='color: #B22222;'>Username Taken/p>";
+
+											}
+											else if ($_GET["error"] == "none"){
+												echo"<p style='color: #B22222;'>You have signed up!/p>";
+
+											}
+
+
+										}
+		 							?>
 										<label>Already have an account?</label>
 										<br>
                   <button type="submit" class="btn btn-black" name="submit">Login</button>
                </form>
-							 <?php
-			if(isset($_GET["error"])){
-		 		if ($_GET["error"] == "emptyinput") {
-		 			echo"<p>Fill in all fields</p>";
-		 		}
-		 		else if ($_GET["error"] == "invalidusername"){
-		 			echo"<p>Choose a proper username</p>";
 
-		 		}
-		 		else if ($_GET["error"] == "invalidemail"){
-		 			echo"<p>Choose a proper email</p>";
-
-		 		}
-		 		else if ($_GET["error"] == "passwordsdontmatch"){
-		 			echo"<p>Passwords does not match</p>";
-
-		 		}
-		 		else if ($_GET["error"] == "usernametaken"){
-		 			echo"<p>Username Taken/p>";
-
-		 		}
-		 		else if ($_GET["error"] == "none"){
-		 			echo"<p>You have signed up!/p>";
-
-		 		}
-
-
-		  }
-		 ?>
             </div>
          </div>
       </div>

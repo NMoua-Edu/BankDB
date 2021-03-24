@@ -15,7 +15,7 @@ require_once 'includes/function-inc.php';
 		<div class="sidenav">
          <div class="login-main-text">
             <h2>Banking System</h2>
-            <p>Simple and Easy</p>
+            <p>Made simple and easy</p>
          </div>
       </div>
       <div class="main">

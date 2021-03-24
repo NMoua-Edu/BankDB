@@ -13,7 +13,7 @@
 		<div class="sidenav">
          <div class="login-main-text">
             <h2>Banking System<br> Login Page</h2>
-            <p>Login or register from here to access.</p>
+            <p>Login from here to access.</p>
          </div>
       </div>
       <div class="main">
@@ -21,11 +21,11 @@
             <div class="login-form">
 							<form action = "includes/login-inc.php" method="POST">
                   <div class="form-group">
-                     <label>User Name</label>
+                     <label>Username:</label>
                      <input type="text" class="form-control" name="username" placeholder="Username/Email..">
                   </div>
                   <div class="form-group">
-                     <label>Password</label>
+                     <label>Password:</label>
                      <input type="password" class="form-control" name ="pwd" placeholder="Password">
                   </div>
                   <button type="submit" class="btn btn-black" name="submit">Login</button>
