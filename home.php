@@ -1,5 +1,5 @@
 <?php
-	include_once 'header.php';
+include_once 'header.php';
 
 ?>
 
@@ -8,12 +8,10 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
     <style>
-           body {
+        body {
             font-family: "Lato", sans-serif;
         }
 
@@ -61,27 +59,27 @@
 <body>
 
     <div class="sidenav">
-    	<?php
-				if (isset($_SESSION["username"])) {
-					echo "<a style='color: #FFFFFF;'> Welcome ". $_SESSION["username"]. "</a>";
-                    #acctype is the variable for what privilege a user can have 
-                    # 1 is employee 2 is customer 
-                    # the code will print out the account type of the person logged in 
-					#echo "<p> You are ". $_SESSION["acctype"]. "</p>";
-					echo "<a href='home.php'>Home</a>";
-        			echo "<a href=>Open New Account</a>";
-        			echo "<a href=>Start Transaction</a>";
-        			echo "<a href=>Edit Profile</a>";
-					echo "<a href = 'includes/logout-inc.php'>Log out</a>";
-				}
-				else{
-					echo "<a href = 'login.php'>Login</a>";
-					echo "<a href = 'signup.php'>Sign up</a>";
-				}
-		?>
+        <?php
+        if (isset($_SESSION["username"])) {
+            echo "<a style='color: #FFFFFF;'> Welcome " . $_SESSION["username"] . "</a>";
+            #acctype is the variable for what privilege a user can have 
+            # 1 is employee 2 is customer 
+            # the code will print out the account type of the person logged in 
+            #echo "<p> You are ". $_SESSION["acctype"]. "</p>";
+            echo "<a href='home.php'>Home</a>";
+            echo "<a href=>Open New Account</a>";
+            echo "<a href=>Start Transaction</a>";
+            echo "<a href=>Edit Profile</a>";
+            echo "<a href = 'includes/logout-inc.php'>Log out</a>";
+        } else {
+            echo "<a href = 'login.php'>Login</a>";
+            echo "<a href = 'signup.php'>Sign up</a>";
+        }
+        ?>
     </div>
 
     <div class="main">
+<<<<<<< HEAD
       
         <div class="container">
             <div class="card">
@@ -95,15 +93,25 @@
                 else{
                     echo " <h1 style = 'margin-top: 10%;'>Please login or Register to access the webpage</h1>";
                 }
+=======
+>>>>>>> 2ea1e29e7af9e1ca2b5db67b85e1d4157e08d197
 
-        ?>
-                </div>
+        <div class="w3-container" style="width: 500px">
+            <div class="w3-panel w3-card">
+                <?php
+                if (isset($_SESSION["username"])) {
+                    echo "<div class= card-body>";
+
+                    echo " <h4>Checking:</h4>";
+                    echo  "<h4>Savings:</h4>";
+                }
+
+                ?>
             </div>
         </div>
-
-
     </div>
 
+    </div>
 
 </body>
 
