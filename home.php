@@ -79,23 +79,6 @@ include_once 'header.php';
     </div>
 
     <div class="main">
-<<<<<<< HEAD
-      
-        <div class="container">
-            <div class="card">
-        <?php
-				if (isset($_SESSION["username"])) {
-                echo"<div class= card-body>";
-    
-                   echo " <h4>Checking:</h4>";
-                   echo  "<h4>Savings:</h4>";
-                  }
-                else{
-                    echo " <h1 style = 'margin-top: 10%;'>Please login or Register to access the webpage</h1>";
-                }
-=======
->>>>>>> 2ea1e29e7af9e1ca2b5db67b85e1d4157e08d197
-
         <div class="w3-container" style="width: 500px">
             <div class="w3-panel w3-card">
                 <?php
@@ -104,6 +87,9 @@ include_once 'header.php';
 
                     echo " <h4>Checking:</h4>";
                     echo  "<h4>Savings:</h4>";
+                }
+                else{
+                    echo " <h1 style = 'margin-top: 10%;'>Please login or Register to access the webpage</h1>";
                 }
 
                 ?>
