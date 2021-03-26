@@ -92,6 +92,9 @@
                    echo " <h4>Checking:</h4>";
                    echo  "<h4>Savings:</h4>";
                   }
+                else{
+                    echo " <h1 style = 'margin-top: 10%;'>Please login or Register to access the webpage</h1>";
+                }
 
         ?>
                 </div>
