@@ -67,7 +67,9 @@ include_once 'header.php';
             # the code will print out the account type of the person logged in 
             #echo "<p> You are ". $_SESSION["acctype"]. "</p>";
                 if ($_SESSION["acctype"] == 1){
-                echo "<a href=''>ADMIN View</a>";
+                    #add any employee/admin pages here 
+                    #people with the account type 1(employee) will be able to view the added employee pages.
+                echo "<a href=''>Employee Only</a>";
                 }
             echo "<a href='home.php'>Home</a>";
             echo "<a href=>Open New Account</a>";
