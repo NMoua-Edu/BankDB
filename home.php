@@ -66,6 +66,9 @@ include_once 'header.php';
             # 1 is employee 2 is customer 
             # the code will print out the account type of the person logged in 
             #echo "<p> You are ". $_SESSION["acctype"]. "</p>";
+                if ($_SESSION["acctype"] == 1){
+                echo "<a href=''>ADMIN View</a>";
+                }
             echo "<a href='home.php'>Home</a>";
             echo "<a href=>Open New Account</a>";
             echo "<a href=>Start Transaction</a>";
@@ -75,6 +78,7 @@ include_once 'header.php';
             echo "<a href = 'login.php'>Login</a>";
             echo "<a href = 'signup.php'>Sign up</a>";
         }
+
         ?>
     </div>
 
