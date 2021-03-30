@@ -40,7 +40,8 @@ include_once 'header.php';
         }
 
         .main {
-            margin-left: 270px;
+            max-width: 500px;
+            margin: auto;
             /* Same as the width of the sidenav */
         }
 
@@ -66,11 +67,11 @@ include_once 'header.php';
             # 1 is employee 2 is customer 
             # the code will print out the account type of the person logged in 
             #echo "<p> You are ". $_SESSION["acctype"]. "</p>";
-                if ($_SESSION["acctype"] == 1){
-                    #add any employee/admin pages here 
-                    #people with the account type 1(employee) will be able to view the added employee pages.
+            if ($_SESSION["acctype"] == 1) {
+                #add any employee/admin pages here 
+                #people with the account type 1(employee) will be able to view the added employee pages.
                 echo "<a href=''>Employee Only</a>";
-                }
+            }
             echo "<a href='home.php'>Home</a>";
             echo "<a href=>Open New Account</a>";
             echo "<a href=>Start Transaction</a>";
@@ -91,10 +92,9 @@ include_once 'header.php';
                 if (isset($_SESSION["username"])) {
                     echo "<div class= card-body>";
 
-                    echo " <h4>Checking:</h4>";
-                    echo  "<h4>Savings:</h4>";
-                }
-                else{
+                    echo " <h4>Checking: $000.00</h4>";
+                    echo  "<h4>Savings: $000.00</h4>";
+                } else {
                     echo " <h1 style = 'margin-top: 10%;'>Please login or Register to access the webpage</h1>";
                 }
 
