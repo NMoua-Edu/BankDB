@@ -42,6 +42,7 @@ include_once 'header.php';
         .main {
             max-width: 500px;
             margin: auto;
+            padding: 200px 100px;
             /* Same as the width of the sidenav */
         }
 
@@ -75,7 +76,7 @@ include_once 'header.php';
             echo "<a href='home.php'>Home</a>";
             echo "<a href=>Open New Account</a>";
             echo "<a href=>Start Transaction</a>";
-            echo "<a href=>Edit Profile</a>";
+            echo "<a href='editprofile.php'>Edit Profile</a>";
             echo "<a href = 'includes/logout-inc.php'>Log out</a>";
         } else {
             echo "<a href = 'login.php'>Login</a>";
@@ -86,6 +87,7 @@ include_once 'header.php';
     </div>
 
     <div class="main">
+    <h2>Account Balance: </h2>
         <div class="w3-container" style="width: 500px">
             <div class="w3-panel w3-card">
                 <?php
