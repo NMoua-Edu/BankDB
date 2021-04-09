@@ -74,7 +74,7 @@ include_once 'header.php';
                 echo "<a href=''>Employee Only</a>";
             }
             echo "<a href='home.php'>Home</a>";
-            echo "<a href=>Open New Account</a>";
+            echo "<a href=bnkaccount.php>Open New Account</a>";
             echo "<a href=>Start Transaction</a>";
             echo "<a href='editprofile.php'>Edit Profile</a>";
             echo "<a href = 'includes/logout-inc.php'>Log out</a>";
