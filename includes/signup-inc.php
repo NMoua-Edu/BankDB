@@ -9,7 +9,6 @@ if(isset($_POST['submit'])){
 	$fname = $_POST["fname"];
 	$lname = $_POST["lname"];
 	$email = $_POST["email"];
-
 	require_once 'server.php';
 	require_once 'function-inc.php';
 
