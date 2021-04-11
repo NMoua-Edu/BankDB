@@ -40,9 +40,8 @@ include_once 'header.php';
         }
 
         .main {
-            max-width: 500px;
+            max-width: 1300px;
             margin: auto;
-            padding: 200px 100px;
             /* Same as the width of the sidenav */
         }
 
@@ -63,6 +62,7 @@ include_once 'header.php';
     <div class="sidenav">
         <?php
         if (isset($_SESSION["username"])) {
+            $userid =$_SESSION["userid"];
             echo "<a style='color: #FFFFFF;'> Welcome " . $_SESSION["username"] . "</a>";
             #acctype is the variable for what privilege a user can have 
             # 1 is employee 2 is customer 
@@ -74,7 +74,7 @@ include_once 'header.php';
                 echo "<a href=''>Employee Only</a>";
             }
             echo "<a href='home.php'>Home</a>";
-            echo "<a href=bnkaccount.php>Open New Account</a>";
+            echo "<a href=bnkaccount.php>Open Bank Account</a>";
             echo "<a href=>Start Transaction</a>";
             echo "<a href='editprofile.php'>Edit Profile</a>";
             echo "<a href = 'includes/logout-inc.php'>Log out</a>";
@@ -93,18 +93,70 @@ include_once 'header.php';
                 <?php
                 if (isset($_SESSION["username"])) {
                     echo "<div class= card-body>";
+                    $sql= "SELECT *
+                            FROM accounts 
+                            INNER JOIN account_type  
+                            ON accounts.Account_TYPE_ACCOUNT_TYPE_ID = account_type.ACCOUNT_TYPE_ID
+                            WHERE Users_USER_ID = $userid";
+                             
+                    $result = mysqli_query($conn, $sql);
+                    $resultCheck = mysqli_num_rows($result);
+                    if ($resultCheck > 0){
+                        while ($row = mysqli_fetch_assoc($result)){
+                            if ($row["CHECKING"] == 3){
+                                $_SESSION['checkingID']= $row["ACCOUNTS_ID"];
+                                echo " <BR><td> Checking ID: </td>". $row["ACCOUNTS_ID"] . "<BR>";
+                                echo  "  <td>Checking Balance: $</h4> <td>". $row["ACCOUNT_BALANCE"]. "<BR>";
 
-                    echo " <h4>Checking: $000.00</h4>";
-                    echo  "<h4>Savings: $000.00</h4>";
+                            } else{
+                                $_SESSION['savingID']= $row["ACCOUNTS_ID"];
+                                echo " <BR>
+                                <td> Savings ID: </td>" . $row["ACCOUNTS_ID"] ."<BR>";
+                                echo "<td>Savings Balance: $</td> " . $row["ACCOUNT_BALANCE"];
+                            }
+
+
+                        }
+                        
+                        
+                    }
+
+
                 } else {
                     echo " <h1 style = 'margin-top: 10%;'>Please login or Register to access the webpage</h1>";
                 }
+
 
                 ?>
             </div>
         </div>
     </div>
 
+    <div class="main">
+    <h2>Transactions: </h2>
+        <div class="w3-container" style="width: 500px">
+            <div class="w3-panel w3-card">
+                <?php
+                if (isset($_SESSION['checkingID'], ($_SESSION['savingID']))){
+                    $sql = "SELECT * FROM transactions";
+                    $result = mysqli_query($conn, $sql);
+                    $resultCheck = mysqli_num_rows($result);
+                    if ( $resultCheck > 0){
+                        while ($row = mysqli_fetch_assoc($result)){
+                            echo "<td>".$row['TRANSACTIONS_ID']. "</td>"." ";
+                            echo "<td>".$row['AMOUNT_OF_TRANSACTION']. "</td>"." ";
+                            echo "<td>".$row['TRANSACTION_APPROVAL']. "</td>"." ";
+                            echo "<td>".$row['TRANSACTION_FROM']. "</td>"." ";
+                            echo "<td>".$row['TRANSACTION_TO']. "</td>"." ";
+                            echo "<td>".$row['ACCOUNTS_ACCOUNTS_ID']. "</td>"." ";
+                            echo "<td>".$row['TRANSACTION_TYPE_TRANSACTION_TYPE_ID']. "</td>"." ";
+                        }
+                    }
+                }
+                    
+                ?>
+            </div>
+        </div>
     </div>
 
 </body>

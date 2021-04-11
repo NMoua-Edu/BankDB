@@ -1,6 +1,6 @@
 <?php
  include_once 'header.php';
-
+ include_once 'includes/function-inc.php';
 ?>
 
 <!DOCTYPE html>
