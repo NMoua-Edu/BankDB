@@ -44,6 +44,9 @@ include_once 'header.php';
             margin-left: 300px;
             /* Same as the width of the sidenav */
         }
+        .logouterror{
+            margin-left: 300px;
+        }
 
         @media screen and (max-height: 450px) {
             .sidenav {
@@ -103,7 +106,7 @@ include_once 'header.php';
                         while ($row = mysqli_fetch_assoc($result)){
                             if ($row["CHECKING"] == 3){
                                 $_SESSION['checkingID']= $row["ACCOUNTS_ID"];
-                                echo " <BR><td> Checking ID: </td>". $row["ACCOUNTS_ID"] . "<BR>";
+                                echo " <br> <br><td> Checking ID: </td>". $row["ACCOUNTS_ID"] . "<BR>";
                                 echo  "  <td>Checking Balance: $</h4> <td>". $row["ACCOUNT_BALANCE"]. "<BR>";
 
                             } else{
@@ -118,11 +121,6 @@ include_once 'header.php';
                         
                         
                     }
-
-
-                } else {
-                    echo " <h1 style = 'margin-top: 10%;'>Please login or Register to access the webpage</h1>";
-                }
 
                 echo'
                
@@ -157,12 +155,17 @@ include_once 'header.php';
                             }
                         }
                     }
+                } else {
+                    
                 }
                     
                 echo'
             </div>
         </div>
     </div>';
+} else {
+    echo " <h1 class= 'logouterror' style = 'margin-top: 10% ;'>Please login or Register to access the webpage</h1>";
+}
     ?>
 
 </body>
