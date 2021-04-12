@@ -54,6 +54,10 @@ include_once 'header.php';
             clear: both;
         }
 
+        .checkboxes {
+            padding-top: 8px;
+        }
+
 
         @media screen and (max-height: 450px) {
             .sidenav {
@@ -68,27 +72,58 @@ include_once 'header.php';
 </head>
 
 <body>
+    <script type="text/javascript" src="functions.js"></script>
 
     <div class="main">
         <h3>Edit Account Information: </h3>
         <br />
-        <div class="content">
-            <form>
+        <form>
+            <div class="content">
                 <label>Username:</label>
-                <input type="text" value="<?php echo $_SESSION["username"]; ?>">
-                <br><br>
-                <label>Password:</label>  
-                <input type="text">
-                <br><br>
-                <label>Email:</label>  
-                <input type="text">
-            </form>
-        </div>
-
+                <input type="text" id="user" value="<?php echo $_SESSION["username"]; ?>" disabled>
+            </div>
+            <div class="checkboxes">
+                <label>Edit Username:</label>
+                <input type="checkbox" onclick="enableUsername()">
+            </div>
+            <br>
+            <div class="content">
+                <label>Email:</label>
+                <input type="text" id="email" disabled>
+            </div>
+            <div class="checkboxes">
+                <label>Edit Email:</label>
+                <input type="checkbox" onclick="enableEmail()">
+            </div>
+            <br>
+            <div class="content">
+                <label>Password:</label>
+                <input type="password" id="pass" disabled>
+            </div>
+            <div class="checkboxes">
+                <label>Edit Password:</label>
+                <input type="checkbox" onclick="enablePassword()">
+                <br>
+                <label>Show Password:</label>
+                <input type="checkbox" onclick="showPassword()">
+            </div>
+        </form>
         <br />
         <button>Save Changes</button>
         &emsp;&emsp;
         <button>Delete Account</button>
+
+        <?php
+            $sql = "SELECT * FROM users WHERE user_name = 'rcapollari';";
+            $result = mysqli_query($conn, $sql);
+            $resultCheck = mysqli_num_rows($result);
+
+            if ($resultCheck > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo $row['EMAIL_ADDRESS'] . "<br>";
+                }
+            }
+        ?>
     </div>
 </body>
 
