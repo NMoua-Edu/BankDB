@@ -113,7 +113,7 @@ include_once 'header.php';
         &emsp;&emsp;
         <button>Delete Account</button>
 
-        <?php
+        <!-- <?php
             $sql = "SELECT * FROM users WHERE user_name = 'rcapollari';";
             $result = mysqli_query($conn, $sql);
             $resultCheck = mysqli_num_rows($result);
@@ -123,7 +123,7 @@ include_once 'header.php';
                     echo $row['EMAIL_ADDRESS'] . "<br>";
                 }
             }
-        ?>
+        ?> -->
     </div>
 </body>
 
