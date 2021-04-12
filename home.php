@@ -41,7 +41,7 @@ include_once 'header.php';
 
         .main {
             max-width: 1300px;
-            margin: auto;
+            margin-left: 300px;
             /* Same as the width of the sidenav */
         }
 
