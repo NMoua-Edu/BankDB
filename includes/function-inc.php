@@ -215,3 +215,11 @@ VALUES ($userid,$sid)";
 
 
 }
+
+function yesApprove($conn, $approve){
+	
+  $sql = "UPDATE transactions set TRANSACTION_APPROVAL= 'Yes' WHERE TRANSACTIONS_ID = ''";
+	header("location: ../home.php?error=none");
+	exit();
+
+}

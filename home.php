@@ -62,32 +62,7 @@ include_once 'header.php';
 
 <body>
 
-    <div class="sidenav">
-        <?php
-        if (isset($_SESSION["username"])) {
-            $userid =$_SESSION["userid"];
-            echo "<a style='color: #FFFFFF;'> Welcome " . $_SESSION["username"] . "</a>";
-            #acctype is the variable for what privilege a user can have 
-            # 1 is employee 2 is customer 
-            # the code will print out the account type of the person logged in 
-            #echo "<p> You are ". $_SESSION["acctype"]. "</p>";
-            if ($_SESSION["acctype"] == 1) {
-                #add any employee/admin pages here 
-                #people with the account type 1(employee) will be able to view the added employee pages.
-                echo "<a href=''>Employee Only</a>";
-            }
-            echo "<a href='home.php'>Home</a>";
-            echo "<a href=bnkaccount.php>Open Bank Account</a>";
-            echo "<a href=>Start Transaction</a>";
-            echo "<a href='editprofile.php'>Edit Profile</a>";
-            echo "<a href = 'includes/logout-inc.php'>Log out</a>";
-        } else {
-            echo "<a href = 'login.php'>Login</a>";
-            echo "<a href = 'signup.php'>Sign up</a>";
-        }
 
-        ?>
-    </div>
     <?php
     if (isset($_SESSION["username"])) {
     echo '<div class="main">
@@ -130,7 +105,7 @@ include_once 'header.php';
 
     <div class="main">
     <h2>Transactions: </h2>
-        <div class="w3-container" style="width: 500px">
+        <div class="w3-container" style="width: 1000px">
             <div class="w3-panel w3-card">';
                 
                 if (isset($_SESSION['checkingID'], ($_SESSION['savingID']))){
@@ -142,9 +117,22 @@ include_once 'header.php';
                     if ( $resultCheck > 0){
                         while ($row = mysqli_fetch_assoc($result)){
                             $tranAccountID = $row['ACCOUNTS_ACCOUNTS_ID'];
+                            echo "<form action = 'includes/adminapprove.php' method ='POST'>
+                                    <table style ='width:100%'>
+                                    <tr>
+                                        <th> Trasnaction ID: </th>
+                                        <th> Amount: </th>
+                                        <th> Admin Approval: </th>
+                                        <th> From: </th>
+                                        <th> To: </th>
+                                        <th> Bank Account ID: </th>
+                                        <th> Transactions Type: </th>
+                                    </tr>
+                                    <br>
+                                </form>";
                             if ( $checkingID and $savingID == $tranAccountID ){
                             echo "<td>".$row['TRANSACTIONS_ID']. "</td>"." ";
-                            echo "<td>".$row['AMOUNT_OF_TRANSACTION']. "</td>"." ";
+                            echo "<td> $".$row['AMOUNT_OF_TRANSACTION']. "</td>"." ";
                             echo "<td>".$row['TRANSACTION_APPROVAL']. "</td>"." ";
                             echo "<td>".$row['TRANSACTION_FROM']. "</td>"." ";
                             echo "<td>".$row['TRANSACTION_TO']. "</td>"." ";
