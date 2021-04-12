@@ -149,7 +149,69 @@ function loginUser($conn, $username, $pwd){
 		exit();
 	}
 
+}
 
+function createChecking($conn, $bnktype){
+	$sql = "INSERT INTO account_type (CHECKING) 
+	VALUES ('$bnktype')";
+	session_start();
+	$userid = $_SESSION['userid'];
+
+		if ($conn->query($sql) === TRUE) {
+			$cid= $conn->insert_id;
+			checkingid($conn, $userid, $cid);
+
+			echo "New record created successfully";
+		} else {
+			echo "Error: " . $sql . "<br>" . $conn->error;
+		}
+		$conn->close();
+
+		header("location: ../home.php?error=none");
+		exit();
+}
+
+function checkingid($conn, $userid, $cid ){
+	$sql = "INSERT INTO accounts (Users_USER_ID, Account_TYPE_ACCOUNT_TYPE_ID)
+	VALUES ($userid,$cid)";
+	
+		 if ($conn->query($sql) === TRUE) {
+			echo "New record created successfully";
+	 } else {
+			echo "Error: " . $sql . "<br>" . $conn->error;
+	 }
+	
+	
+	}
+	
+function createSaving($conn, $bnktype){
+$sql = "INSERT INTO account_type (CHECKING, SAVING) 
+VALUES (NULL,'$bnktype')";
+session_start();
+$userid = $_SESSION['userid'];
+
+	if ($conn->query($sql) === TRUE) {
+		$sid = $conn->insert_id;
+		savingid($conn, $userid, $sid);
+		echo "New record created successfully";
+	} else {
+		echo "Error: " . $sql . "<br>" . $conn->error;
+	}
+	$conn->close();
+
+	header("location: ../home.php?error=none");
+	exit();
+}
+
+function savingid($conn, $userid, $sid ){
+$sql = "INSERT INTO accounts (Users_USER_ID, Account_TYPE_ACCOUNT_TYPE_ID)
+VALUES ($userid,$sid)";
+
+	 if ($conn->query($sql) === TRUE) {
+		echo "New record created successfully";
+ } else {
+		echo "Error: " . $sql . "<br>" . $conn->error;
+ }
 
 
 }
