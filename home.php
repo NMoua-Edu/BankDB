@@ -85,14 +85,12 @@ include_once 'header.php';
 
         ?>
     </div>
-
-    <div class="main">
+    <?php
+    if (isset($_SESSION["username"])) {
+    echo '<div class="main">
     <h2>Account Balance: </h2>
         <div class="w3-container" style="width: 500px">
-            <div class="w3-panel w3-card">
-                <?php
-                if (isset($_SESSION["username"])) {
-                    echo "<div class= card-body>";
+            <div class="w3-panel w3-card">';
                     $sql= "SELECT *
                             FROM accounts 
                             INNER JOIN account_type  
@@ -126,23 +124,27 @@ include_once 'header.php';
                     echo " <h1 style = 'margin-top: 10%;'>Please login or Register to access the webpage</h1>";
                 }
 
-
-                ?>
-            </div>
+                echo'
+               
+           </div>
         </div>
     </div>
 
     <div class="main">
     <h2>Transactions: </h2>
         <div class="w3-container" style="width: 500px">
-            <div class="w3-panel w3-card">
-                <?php
+            <div class="w3-panel w3-card">';
+                
                 if (isset($_SESSION['checkingID'], ($_SESSION['savingID']))){
+                    $checkingID = $_SESSION['checkingID'];
+                    $savingID = $_SESSION['savingID'];
                     $sql = "SELECT * FROM transactions";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
                     if ( $resultCheck > 0){
                         while ($row = mysqli_fetch_assoc($result)){
+                            $tranAccountID = $row['ACCOUNTS_ACCOUNTS_ID'];
+                            if ( $checkingID and $savingID == $tranAccountID ){
                             echo "<td>".$row['TRANSACTIONS_ID']. "</td>"." ";
                             echo "<td>".$row['AMOUNT_OF_TRANSACTION']. "</td>"." ";
                             echo "<td>".$row['TRANSACTION_APPROVAL']. "</td>"." ";
@@ -150,14 +152,18 @@ include_once 'header.php';
                             echo "<td>".$row['TRANSACTION_TO']. "</td>"." ";
                             echo "<td>".$row['ACCOUNTS_ACCOUNTS_ID']. "</td>"." ";
                             echo "<td>".$row['TRANSACTION_TYPE_TRANSACTION_TYPE_ID']. "</td>"." ";
+                            } else {
+                                echo "No Transactions";
+                            }
                         }
                     }
                 }
                     
-                ?>
+                echo'
             </div>
         </div>
-    </div>
+    </div>';
+    ?>
 
 </body>
 
