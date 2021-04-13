@@ -79,6 +79,7 @@ include_once 'header.php';
                     $resultCheck = mysqli_num_rows($result);
                     if ($resultCheck > 0){
                         while ($row = mysqli_fetch_assoc($result)){
+                            $__SESSION['accountID'] = $row['ACCOUNTS_ID'];
                             if ($row["CHECKING"] == 3){
                                 $_SESSION['checkingID']= $row["ACCOUNTS_ID"];
                                 echo " <br> <br><td> Checking ID: </td>". $row["ACCOUNTS_ID"] . "<BR>";
@@ -117,6 +118,7 @@ include_once 'header.php';
                     if ( $resultCheck > 0){
                         while ($row = mysqli_fetch_assoc($result)){
                             $tranAccountID = $row['ACCOUNTS_ACCOUNTS_ID'];
+                            if($checkingID and $savingID == $tranAccountID){
                             echo "<form action = 'includes/adminapprove.php' method ='POST'>
                                     <table style ='width:100%'>
                                     <tr>
@@ -130,17 +132,14 @@ include_once 'header.php';
                                     </tr>
                                     <br>
                                 </form>";
-                            if ( $checkingID and $savingID == $tranAccountID ){
-                            echo "<td>".$row['TRANSACTIONS_ID']. "</td>"." ";
-                            echo "<td> $".$row['AMOUNT_OF_TRANSACTION']. "</td>"." ";
-                            echo "<td>".$row['TRANSACTION_APPROVAL']. "</td>"." ";
-                            echo "<td>".$row['TRANSACTION_FROM']. "</td>"." ";
-                            echo "<td>".$row['TRANSACTION_TO']. "</td>"." ";
-                            echo "<td>".$row['ACCOUNTS_ACCOUNTS_ID']. "</td>"." ";
-                            echo "<td>".$row['TRANSACTION_TYPE_TRANSACTION_TYPE_ID']. "</td>"." ";
-                            } else {
-                                echo "No Transactions";
-                            }
+                                echo "<td>".$row['TRANSACTIONS_ID']. "</td>"." ";
+                                echo "<td> $".$row['AMOUNT_OF_TRANSACTION']. "</td>"." ";
+                                echo "<td>".$row['TRANSACTION_APPROVAL']. "</td>"." ";
+                                echo "<td>".$row['TRANSACTION_FROM']. "</td>"." ";
+                                echo "<td>".$row['TRANSACTION_TO']. "</td>"." ";
+                                echo "<td>".$row['ACCOUNTS_ACCOUNTS_ID']. "</td>"." ";
+                                echo "<td>".$row['TRANSACTION_TYPE_TRANSACTION_TYPE_ID']. "</td>"." ";
+                            } 
                         }
                     }
                 } else {
