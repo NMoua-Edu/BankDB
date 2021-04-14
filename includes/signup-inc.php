@@ -1,6 +1,6 @@
 <?php
 
-if(isset($_POST['submit'])){
+if (isset($_POST['submit'])) {
 
 	$username = $_POST["username"];
 	$pwd = $_POST["pwd"];
@@ -13,44 +13,40 @@ if(isset($_POST['submit'])){
 	require_once 'function-inc.php';
 
 
-	if (emptyInputSignup($fname, $lname, $email, $username, $pwd, $pwdcheck )!== false) {
+	if (emptyInputSignup($fname, $lname, $email, $username, $pwd, $pwdcheck) !== false) {
 		header("location: ../signup.php?error=emptyinput");
 		exit();
 	}
 
-	if (invalidUsername($username)!== false) {
+	if (invalidUsername($username) !== false) {
 		header("location: ../signup.php?error=invalidusername");
 		exit();
 	}
 
-	if (invalidEmail($email)!== false) {
+	if (invalidEmail($email) !== false) {
 		header("location: ../signup.php?error=invalidemail");
 		exit();
 	}
-	if (pwdMatch($pwd, $pwdcheck)!== false) {
+	if (pwdMatch($pwd, $pwdcheck) !== false) {
 		header("location: ../signup.php?error=passwordsdontmatch");
 		exit();
 	}
 
-	if (usernameExists($conn, $username, $email)!== false) {
+	if (usernameExists($conn, $username, $email) !== false) {
 		header("location: ../signup.php?error=usernametaken");
 		exit();
 	}
 	# 1 being employee and 2 being customer 
-	if ($acctype !== "customer"){
-		$acctype = 1; 
-	}
-	else {
+	if ($acctype !== "customer") {
+		$acctype = 1;
+	} else {
 		$acctype = 2;
 	}
 
 
 
 	createUser($conn, $acctype, $username, $pwd, $fname, $lname, $email);
-
-}
-
-else{
+} else {
 	header("location: ../signup.php");
 	exit();
 }

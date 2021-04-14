@@ -77,7 +77,7 @@ include_once 'header.php';
     <div class="main">
         <h3>Edit Account Information: </h3>
         <br />
-        <form>
+        <form action="includes/signup-inc.php" method="POST">
             <div class="content">
                 <label>Username:</label>
                 <input type="text" id="user" value="<?php echo $_SESSION["username"]; ?>" disabled>
@@ -89,7 +89,7 @@ include_once 'header.php';
             <br>
             <div class="content">
                 <label>Email:</label>
-                <input type="text" id="email" disabled>
+                <input type="text" id="email" value="<?php echo $_SESSION["email"]; ?>" disabled>
             </div>
             <div class="checkboxes">
                 <label>Edit Email:</label>
@@ -98,7 +98,7 @@ include_once 'header.php';
             <br>
             <div class="content">
                 <label>Password:</label>
-                <input type="password" id="pass" disabled>
+                <input type="password" id="pass" value="<?php echo $_SESSION["pwd"]; ?>" disabled>
             </div>
             <div class="checkboxes">
                 <label>Edit Password:</label>
@@ -109,21 +109,12 @@ include_once 'header.php';
             </div>
         </form>
         <br />
-        <button>Save Changes</button>
+        <button type="submit">Save Changes</button>
         &emsp;&emsp;
-        <button>Delete Account</button>
+        <button type="submit">Delete Account</button>
+        <br><br>
+        <input type="submit" name="update" value="Update">
 
-        <!-- <?php
-            $sql = "SELECT * FROM users WHERE user_name = 'rcapollari';";
-            $result = mysqli_query($conn, $sql);
-            $resultCheck = mysqli_num_rows($result);
-
-            if ($resultCheck > 0) {
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo $row['EMAIL_ADDRESS'] . "<br>";
-                }
-            }
-        ?> -->
     </div>
 </body>
 

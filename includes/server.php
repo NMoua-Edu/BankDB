@@ -7,6 +7,6 @@ $dbname = "bankdb";
 
 $conn = mysqli_connect($dbhost, $dbuser, $dbpass, $dbname) or die("Unable to connect to '$dbhost");
 
-if(!$conn){
-	die("Conenction Failed: " . mysqli_connect_error());
+if (!$conn) {
+	die("Connection Failed: " . mysqli_connect_error());
 }
