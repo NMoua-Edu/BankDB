@@ -140,6 +140,8 @@ function loginUser($conn, $username, $pwd)
 		$_SESSION["username"] = $usernameExists["USER_NAME"];
 		$_SESSION["email"] = $usernameExists["EMAIL_ADDRESS"];
 		$_SESSION["pwd"] = $usernameExists["PASSWORD"];
+		$_SESSION["firstname"] = $usernameExists["FIRST_NAME"];
+		$_SESSION["lastname"] = $usernameExists["LAST_NAME"];
 
 		#this will help determin account type, 2 is customer while 1 is admin
 		$_SESSION["acctype"] = $usernameExists["USER_TYPE_USER_TYPE_ID"];

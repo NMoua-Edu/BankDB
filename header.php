@@ -31,7 +31,7 @@
             echo "<a href='home.php'>Home</a>";
             echo "<a href=bnkaccount.php>Open Bank Account</a>";
             echo "<a href=>Start Transaction</a>";
-            echo "<a href='editprofile.php'>Edit Profile</a>";
+            echo "<a href='viewProfile.php'>Edit Profile</a>";
             if ($_SESSION["acctype"] == 1) {
                 #add any employee/admin pages here 
                 #people with the account type 1(employee) will be able to view the added employee pages.

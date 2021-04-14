@@ -72,12 +72,14 @@ include_once 'header.php';
 </head>
 
 <body>
+
+
     <script type="text/javascript" src="functions.js"></script>
 
     <div class="main">
         <h3>Edit Account Information: </h3>
         <br />
-        <form action="includes/signup-inc.php" method="POST">
+        <form method="POST">
             <div class="content">
                 <label>Username:</label>
                 <input type="text" id="user" value="<?php echo $_SESSION["username"]; ?>" disabled>
@@ -107,13 +109,14 @@ include_once 'header.php';
                 <label>Show Password:</label>
                 <input type="checkbox" onclick="showPassword()">
             </div>
+            <input type="submit" name="update" value="Update">
         </form>
         <br />
         <button type="submit">Save Changes</button>
         &emsp;&emsp;
-        <button type="submit">Delete Account</button>
+        <button onclick="document.location='delete.php?id=<?php echo $_SESSION['userid']; ?>'" type="submit">Delete Account</button>
         <br><br>
-        <input type="submit" name="update" value="Update">
+
 
     </div>
 </body>
