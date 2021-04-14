@@ -72,8 +72,6 @@ include_once 'header.php';
 </head>
 
 <body>
-
-
     <script type="text/javascript" src="functions.js"></script>
 
     <div class="main">
@@ -109,14 +107,12 @@ include_once 'header.php';
                 <label>Show Password:</label>
                 <input type="checkbox" onclick="showPassword()">
             </div>
-            <input type="submit" name="update" value="Update">
         </form>
         <br />
         <button type="submit">Save Changes</button>
         &emsp;&emsp;
         <button onclick="document.location='delete.php?id=<?php echo $_SESSION['userid']; ?>'" type="submit">Delete Account</button>
         <br><br>
-
 
     </div>
 </body>
