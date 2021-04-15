@@ -68,6 +68,11 @@ include_once 'header.php';
                 font-size: 18px;
             }
         }
+
+        .dlt-button {
+            background-color: #EB9797;
+        }
+
     </style>
 </head>
 
@@ -103,20 +108,22 @@ include_once 'header.php';
         ?>
         <h3>Edit Account Information: </h3>
         <br />
+        <button class="dlt-button" onclick="document.getElementById('id01').style.display='block'" type="submit">Delete Account</button>
+        <br><br><br>
         <form method="POST">
             <div class="content">
                 <label>Username:</label>
-                <input type="text" id="user" name="username" placeholder="Change Username" value="<?php echo $_SESSION["username"]; ?>">
+                <input type="text" id="user" name="username" placeholder="Change Username" value="<?php echo $_SESSION["username"]; ?>" required>
             </div>
             <br>
             <div class="content">
                 <label>Email:</label>
-                <input type="text" id="email" name="email" placeholder="Change Email Address" value="<?php echo $_SESSION["email"]; ?>">
+                <input type="text" id="email" name="email" placeholder="Change Email Address" value="<?php echo $_SESSION["email"]; ?>" required>
             </div>
             <br>
             <div class="content">
                 <label>Password:</label>
-                <input type="password" id="pass" name="password" placeholder="Change Password">
+                <input type="password" id="pass" name="password" placeholder="Change Password" required>
             </div>
             <div class="checkboxes">
                 <label>Show Password:</label>
@@ -124,12 +131,8 @@ include_once 'header.php';
             </div>
             <br />
             <button type="submit" name="update">Save Changes</button>
-            &emsp;&emsp;
-        </form>
 
-        <br>
-        <button onclick="document.getElementById('id01').style.display='block'" type="submit">Delete Account</button>
-        <br><br>
+        </form>
 
 
 

@@ -108,6 +108,7 @@ include_once 'header.php';
                 <a href="editprofile.php">Update Profile</a>
             </div>
         </div>
+        
     </div>
 </body>
 
