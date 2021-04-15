@@ -94,7 +94,7 @@ include_once 'header.php';
 
             if ($edit) {
                 mysqli_close($conn); // Close connection
-                header("location:viewProfile.php"); // redirects to all records page
+                header("location:index.php"); // redirects to view profile page
                 exit;
             } else {
                 echo "Error updating record";
@@ -106,17 +106,17 @@ include_once 'header.php';
         <form method="POST">
             <div class="content">
                 <label>Username:</label>
-                <input type="text" id="user" name="username" value="<?php echo $_SESSION["username"]; ?>">
+                <input type="text" id="user" name="username" placeholder="Change Username" value="<?php echo $_SESSION["username"]; ?>">
             </div>
             <br>
             <div class="content">
                 <label>Email:</label>
-                <input type="text" id="email" name="email" value="<?php echo $_SESSION["email"]; ?>">
+                <input type="text" id="email" name="email" placeholder="Change Email Address" value="<?php echo $_SESSION["email"]; ?>">
             </div>
             <br>
             <div class="content">
                 <label>Password:</label>
-                <input type="password" id="pass" name="password" value="<?php echo $_SESSION["pwd"]; ?>">
+                <input type="password" id="pass" name="password" placeholder="Change Password">
             </div>
             <div class="checkboxes">
                 <label>Show Password:</label>
