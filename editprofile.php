@@ -94,7 +94,7 @@ include_once 'header.php';
 
             if ($edit) {
                 mysqli_close($conn); // Close connection
-                header("location:viewProfile.php"); // redirects to all records page
+                header("location:index.php"); // redirects to view profile page
                 exit;
             } else {
                 echo "Error updating record";
