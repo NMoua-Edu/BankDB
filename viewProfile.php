@@ -100,7 +100,7 @@ include_once 'header.php';
                 <h5><b>Name:</b> <?php echo $_SESSION["firstname"];
                                     echo '&nbsp';
                                     echo $_SESSION["lastname"]; ?></h5>
-                                    
+
                 <h5><b>Username:</b> <?php echo $_SESSION["username"]; ?></h5>
                 <h5><b>Email:</b> <?php echo $_SESSION["email"]; ?></h5>
                 <h5><b>Password:</b> ****************</h5>
@@ -108,7 +108,7 @@ include_once 'header.php';
                 <a href="editprofile.php">Update Profile</a>
             </div>
         </div>
-        
+
     </div>
 </body>
 

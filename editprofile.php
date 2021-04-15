@@ -72,7 +72,6 @@ include_once 'header.php';
         .dlt-button {
             background-color: #EB9797;
         }
-
     </style>
 </head>
 
@@ -130,11 +129,8 @@ include_once 'header.php';
                 <input type="checkbox" onclick="showPassword()">
             </div>
             <br />
-            <button type="submit" name="update">Save Changes</button>
-
+            <button type="submit" name="update">Update</button>
         </form>
-
-
 
         <div id="id01" class="modal">
             <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
