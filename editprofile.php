@@ -75,44 +75,70 @@ include_once 'header.php';
     <script type="text/javascript" src="functions.js"></script>
 
     <div class="main">
+        <?php
+        include "includes/server.php"; // Using database connection file here
+
+        $id = $_SESSION['userid'];
+        $qry = mysqli_query($conn, "SELECT * FROM users where USER_ID='$id'"); // select queryF
+        $data = mysqli_fetch_array($qry); // fetch data
+
+        if (isset($_POST['update'])) // when click on Update button
+        {
+            $username = $_POST['username'];
+            $email = $_POST['email'];
+            $password = $_POST['password'];
+
+            $sql = "UPDATE users SET USER_NAME='$username', EMAIL_ADDRESS='$email', PASSWORD='$password' WHERE USER_ID='$id'";
+            $edit = mysqli_query($conn, $sql);
+
+            if ($edit) {
+                mysqli_close($conn); // Close connection
+                header("location:viewProfile.php"); // redirects to all records page
+                exit;
+            } else {
+                echo "Error updating record";
+            }
+        }
+        ?>
         <h3>Edit Account Information: </h3>
         <br />
         <form method="POST">
             <div class="content">
                 <label>Username:</label>
-                <input type="text" id="user" value="<?php echo $_SESSION["username"]; ?>" disabled>
+                <input type="text" id="user" name="username" value="<?php echo $_SESSION["username"]; ?>">
             </div>
             <div class="checkboxes">
                 <label>Edit Username:</label>
-                <input type="checkbox" onclick="enableUsername()">
             </div>
             <br>
             <div class="content">
                 <label>Email:</label>
-                <input type="text" id="email" value="<?php echo $_SESSION["email"]; ?>" disabled>
+                <input type="text" id="email" name="email" value="<?php echo $_SESSION["email"]; ?>">
             </div>
             <div class="checkboxes">
                 <label>Edit Email:</label>
-                <input type="checkbox" onclick="enableEmail()">
             </div>
             <br>
             <div class="content">
                 <label>Password:</label>
-                <input type="password" id="pass" value="<?php echo $_SESSION["pwd"]; ?>" disabled>
+                <input type="password" id="pass" name="password" value="<?php echo $_SESSION["pwd"]; ?>">
             </div>
             <div class="checkboxes">
                 <label>Edit Password:</label>
-                <input type="checkbox" onclick="enablePassword()">
                 <br>
                 <label>Show Password:</label>
                 <input type="checkbox" onclick="showPassword()">
             </div>
+            <br />
+            <button type="submit" name="update">Save Changes</button>
+            &emsp;&emsp;
         </form>
-        <br />
-        <button type="submit" name="update" onclick="document.location='update.php?id=<?php echo $_SESSION['userid']; ?>'">Save Changes</button>
-        &emsp;&emsp;
+
+        <br>
         <button onclick="document.getElementById('id01').style.display='block'" type="submit">Delete Account</button>
         <br><br>
+
+
 
         <div id="id01" class="modal">
             <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
