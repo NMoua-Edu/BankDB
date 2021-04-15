@@ -215,10 +215,55 @@ VALUES ($userid,$sid)";
 	}
 }
 
-function yesApprove($conn, $approve)
+function yesApprove($conn, $approve, $transID, $accID)
+{
+	
+	$sql = "UPDATE transactions set TRANSACTION_APPROVAL= 'Yes' WHERE TRANSACTIONS_ID = '$transID' AND ACCOUNTS_ACCOUNTS_ID = '$accID' ";
+
+	if ($conn->query($sql) === TRUE) {
+		echo "Record updated successfully";
+	} else {
+		echo "Error updating record: " . $conn->error;
+	}
+	
+	$conn->close();
+
+	header("location: ../adminview.php");
+	exit();
+
+
+}
+
+function noApprove($conn, $approve, $transID, $accID)
 {
 
-	$sql = "UPDATE transactions set TRANSACTION_APPROVAL= 'Yes' WHERE TRANSACTIONS_ID = ''";
-	header("location: ../home.php?error=none");
+	$sql = "UPDATE transactions set TRANSACTION_APPROVAL= 'No' WHERE TRANSACTIONS_ID = $transID AND ACCOUNTS_ACCOUNTS_ID = $accID";
+
+	if ($conn->query($sql) === TRUE) {
+		echo "Record updated successfully";
+	} else {
+		echo "Error updating record: " . $conn->error;
+	}
+	
+	$conn->close();
+
+	header("location: ../adminview.php");
+	exit();
+
+
+}
+
+function delTransaction($conn, $transID){
+	$sql = "DELETE FROM transactions WHERE TRANSACTIONS_ID = $transID";
+
+	if ($conn->query($sql) === TRUE) {
+		echo "Record deleted successfully";
+	} else {
+		echo "Error deleting record: " . $conn->error;
+	}
+	
+	$conn->close();
+	
+	header("location: ../adminview.php");
 	exit();
 }

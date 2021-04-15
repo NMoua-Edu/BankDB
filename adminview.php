@@ -66,6 +66,8 @@
       $resultCheck = mysqli_num_rows($result);
       if ( $resultCheck > 0){
         while ($row = mysqli_fetch_assoc($result)){
+            $_SESSION['transID'] = $row['TRANSACTIONS_ID'];
+            $_SESSION['bankID'] = $row['ACCOUNTS_ACCOUNTS_ID'];
           echo "<form action = 'includes/adminapprove.php' method ='POST'>
                 <table style ='width:100%'>
                 <tr>
@@ -76,8 +78,7 @@
                   <th> To: </th>
                   <th> Bank Account ID: </th>
                   <th> Transactions Type: </th>
-                </tr>
-                </form>";
+                </tr>";
           echo "<br> <td>".$row['TRANSACTIONS_ID']. "</td>"." ";
           echo "<td>".$row['AMOUNT_OF_TRANSACTION']. "</td>"." ";
           echo "<td>".$row['TRANSACTION_APPROVAL']. "</td>"." ";
@@ -86,12 +87,24 @@
           echo "<td>".$row['ACCOUNTS_ACCOUNTS_ID']. "</td>"." ";
           echo "<td>".$row['TRANSACTION_TYPE_TRANSACTION_TYPE_ID']. "</td>"." ";   
           echo "</table>";
-          echo "<button type='submit' class='btn btn-black' name='approve'>Approve</button>";  
+
         }
+        echo "<button type='submit' class='btn btn-black' name='approve'>Approve</button>";
+        echo "<select type= 'text' name='approval'>
+                <option value='Yes'>Yes</option>
+                <option value='No'>No</option>
+                </select>";
+        echo "<input type='text' class='form-control' name='transID' placeholder='Enter Transaction ID..'>";  
+        echo "<input type='text' class='form-control' name='accID' placeholder='Enter Bank Account ID..'>";                             
+        echo "</form>";
+        echo "<form action = 'includes/admindel.php' method ='POST'>";
+        echo "<br><button type='submit' class='btn btn-black' name='del'>Delete Transaction</button>";
+        echo "<input type='text' class='form-control' name='transID' placeholder='Enter Transaction ID..'>"; 
+        echo "<br>";
+        echo "</form>";
+
+
       }
-
-
-
       ?>
            </div>
         </div>
