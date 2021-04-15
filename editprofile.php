@@ -87,8 +87,9 @@ include_once 'header.php';
             $username = $_POST['username'];
             $email = $_POST['email'];
             $password = $_POST['password'];
+            $hashPassword = password_hash($password, PASSWORD_DEFAULT);
 
-            $sql = "UPDATE users SET USER_NAME='$username', EMAIL_ADDRESS='$email', PASSWORD='$password' WHERE USER_ID='$id'";
+            $sql = "UPDATE users SET USER_NAME='$username', EMAIL_ADDRESS='$email', PASSWORD='$hashPassword' WHERE USER_ID='$id'";
             $edit = mysqli_query($conn, $sql);
 
             if ($edit) {
@@ -107,16 +108,10 @@ include_once 'header.php';
                 <label>Username:</label>
                 <input type="text" id="user" name="username" value="<?php echo $_SESSION["username"]; ?>">
             </div>
-            <div class="checkboxes">
-                <label>Edit Username:</label>
-            </div>
             <br>
             <div class="content">
                 <label>Email:</label>
                 <input type="text" id="email" name="email" value="<?php echo $_SESSION["email"]; ?>">
-            </div>
-            <div class="checkboxes">
-                <label>Edit Email:</label>
             </div>
             <br>
             <div class="content">
@@ -124,8 +119,6 @@ include_once 'header.php';
                 <input type="password" id="pass" name="password" value="<?php echo $_SESSION["pwd"]; ?>">
             </div>
             <div class="checkboxes">
-                <label>Edit Password:</label>
-                <br>
                 <label>Show Password:</label>
                 <input type="checkbox" onclick="showPassword()">
             </div>
