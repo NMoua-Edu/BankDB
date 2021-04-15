@@ -3,7 +3,7 @@
 include "includes/server.php"; // Using database connection file here
 session_start();
 
-$id = $_SESSION['userid']; // get session id
+$id = $_SESSION['userid']; // get session user id
 
 $del = mysqli_query($conn,"DELETE FROM users WHERE USER_ID = '$id'"); // delete query
 

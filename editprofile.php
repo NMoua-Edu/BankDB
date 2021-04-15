@@ -7,7 +7,7 @@ include_once 'header.php';
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="stylesheet" href="modal.css">
     <style>
         body {
             font-family: "Lato", sans-serif;
@@ -109,12 +109,37 @@ include_once 'header.php';
             </div>
         </form>
         <br />
-        <button type="submit">Save Changes</button>
+        <button type="submit" name="update" onclick="document.location='update.php?id=<?php echo $_SESSION['userid']; ?>'">Save Changes</button>
         &emsp;&emsp;
-        <button onclick="document.location='delete.php?id=<?php echo $_SESSION['userid']; ?>'" type="submit">Delete Account</button>
+        <button onclick="document.getElementById('id01').style.display='block'" type="submit">Delete Account</button>
         <br><br>
 
+        <div id="id01" class="modal">
+            <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">×</span>
+            <form class="modal-content" action="/action_page.php">
+                <div class="container">
+                    <h1>Delete Account</h1>
+                    <p>Are you sure you want to delete your account?</p>
+
+                    <div class="clearfix">
+                        <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+                        <button type="button" onclick="document.location='delete.php?id=<?php echo $_SESSION['userid']; ?>'" class="deletebtn">Delete</button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
+
+    <script>
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
 </body>
 
 </html>
