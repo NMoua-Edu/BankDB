@@ -80,7 +80,6 @@ include_once 'header.php';
 
     <div class="main">
         <?php
-        include "includes/server.php"; // Using database connection file here
 
         $id = $_SESSION['userid'];
         $qry = mysqli_query($conn, "SELECT * FROM users where USER_ID='$id'"); // select queryF
@@ -98,7 +97,7 @@ include_once 'header.php';
 
             if ($edit) {
                 mysqli_close($conn); // Close connection
-                header("location:index.php"); // redirects to view profile page
+                header("location:index.php"); // redirects to index page
                 exit;
             } else {
                 echo "Error updating record";

@@ -97,9 +97,10 @@ include_once 'header.php';
             <div class="container">
                 <h4 class="title">Current Account Information</h4>
                 <h5><b>User ID:</b> <?php echo $_SESSION["userid"]; ?></h5>
-                <h5><b>Name:</b> <?php echo $_SESSION["firstname"];
-                                    echo '&nbsp';
-                                    echo $_SESSION["lastname"]; ?></h5>
+                <h5><b>Name:</b>
+                    <?php echo $_SESSION["firstname"];
+                    echo '&nbsp';
+                    echo $_SESSION["lastname"]; ?></h5>
 
                 <h5><b>Username:</b> <?php echo $_SESSION["username"]; ?></h5>
                 <h5><b>Email:</b> <?php echo $_SESSION["email"]; ?></h5>

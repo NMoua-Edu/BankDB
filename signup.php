@@ -58,7 +58,7 @@ include_once 'header.php';
 						} else if ($_GET["error"] == "passwordsdontmatch") {
 							echo "<p style='color: #B22222;'>Passwords does not match</p>";
 						} else if ($_GET["error"] == "usernametaken") {
-							echo "<p style='color: #B22222;'>Username Taken/p>";
+							echo "<p style='color: #B22222;'>Username or Email Taken</p>";
 						} else if ($_GET["error"] == "none") {
 							echo "<p style='color: #B22222;'>You have signed up!/p>";
 						}
