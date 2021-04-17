@@ -27,6 +27,7 @@ require_once 'includes/function-inc.php';
 					<form action="login.php" method="POST">
 						<button type="submit" class="btn btn-black btn-lg btn-block" name="submit">Login Here</button>
 					</form>
+					<br>
 					<p>Don't have an account?</p>
 					<form action="signup.php" method="POST">
 						<button type="submit" class="btn btn-secondary btn-lg btn-block" name="submit">Register</button>
