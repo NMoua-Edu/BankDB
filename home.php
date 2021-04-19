@@ -81,12 +81,11 @@ include_once 'header.php';
                         while ($row = mysqli_fetch_assoc($result)){
                             $__SESSION['accountID'] = $row['ACCOUNTS_ID'];
                             if ($row["CHECKING"] == 3){
-                                $_SESSION['checkingID']= $row["ACCOUNTS_ID"];
                                 echo " <br> <br><td> Checking ID: </td>". $row["ACCOUNTS_ID"] . "<BR>";
                                 echo  "  <td>Checking Balance: $</h4> <td>". $row["ACCOUNT_BALANCE"]. "<BR>";
 
                             } else{
-                                $_SESSION['savingID']= $row["ACCOUNTS_ID"];
+
                                 echo " <BR>
                                 <td> Savings ID: </td>" . $row["ACCOUNTS_ID"] ."<BR>";
                                 echo "<td>Savings Balance: $</td> " . $row["ACCOUNT_BALANCE"];
@@ -108,17 +107,16 @@ include_once 'header.php';
     <h2>Transactions: </h2>
         <div class="w3-container" style="width: 1000px">
             <div class="w3-panel w3-card">';
-                
-                if (isset($_SESSION['checkingID'], ($_SESSION['savingID']))){
-                    $checkingID = $_SESSION['checkingID'];
-                    $savingID = $_SESSION['savingID'];
-                    $sql = "SELECT * FROM transactions";
+                    $sql = "SELECT * FROM transactions
+                    INNER JOIN accounts 
+                    On transactions.ACCOUNTS_ACCOUNTS_ID = accounts.ACCOUNTS_ID
+                    WHERE Users_USER_ID = $userid";
                     $result = mysqli_query($conn, $sql);
                     $resultCheck = mysqli_num_rows($result);
                     if ( $resultCheck > 0){
                         while ($row = mysqli_fetch_assoc($result)){
                             $tranAccountID = $row['ACCOUNTS_ACCOUNTS_ID'];
-                            if($checkingID and $savingID == $tranAccountID){
+
                             echo "<form action = 'includes/adminapprove.php' method ='POST'>
                                     <table style ='width:100%'>
                                     <tr>
@@ -139,17 +137,17 @@ include_once 'header.php';
                                 echo "<td>".$row['TRANSACTION_TO']. "</td>"." ";
                                 echo "<td>".$row['ACCOUNTS_ACCOUNTS_ID']. "</td>"." ";
                                 echo "<td>".$row['TRANSACTION_TYPE_TRANSACTION_TYPE_ID']. "</td>"." ";
-                            } 
                         }
                     }
-                } else {
-                    
-                }
                     
                 echo'
             </div>
         </div>
     </div>';
+    
+
+
+    
 } else {
     echo " <h1 class= 'logouterror' style = 'margin-top: 10% ;'>Please login or Register to access the webpage</h1>";
 }
