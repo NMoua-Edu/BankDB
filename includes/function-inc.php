@@ -87,7 +87,7 @@ function createUser($conn, $acctype, $username, $pwd, $fname, $lname, $email)
 {
 
 	$hashedPwd = password_hash($pwd, PASSWORD_DEFAULT);
-	$sql = "INSERT INTO users (USER_TYPE_USER_TYPE_ID, USER_NAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL_ADDRESS) 
+	$sql = "INSERT INTO users (USER_TYPE_USER_TYPE_ID, USER_NAME, PASSWORD, FIRST_NAME, LAST_NAME, EMAIL_ADDRESS)
 	VALUES ('$acctype', '$username', '$hashedPwd', '$fname', '$lname', '$email')";
 
 	if ($conn->query($sql) === TRUE) {
@@ -152,7 +152,7 @@ function loginUser($conn, $username, $pwd)
 
 function createChecking($conn, $bnktype)
 {
-	$sql = "INSERT INTO account_type (CHECKING) 
+	$sql = "INSERT INTO account_type (CHECKING)
 	VALUES ('$bnktype')";
 	session_start();
 	$userid = $_SESSION['userid'];
@@ -185,7 +185,7 @@ function checkingid($conn, $userid, $cid)
 
 function createSaving($conn, $bnktype)
 {
-	$sql = "INSERT INTO account_type (CHECKING, SAVING) 
+	$sql = "INSERT INTO account_type (CHECKING, SAVING)
 VALUES (NULL,'$bnktype')";
 	session_start();
 	$userid = $_SESSION['userid'];
@@ -217,7 +217,7 @@ VALUES ($userid,$sid)";
 
 function yesApprove($conn, $approve, $transID, $accID)
 {
-	
+
 	$sql = "UPDATE transactions set TRANSACTION_APPROVAL= 'Yes' WHERE TRANSACTIONS_ID = '$transID' AND ACCOUNTS_ACCOUNTS_ID = '$accID' ";
 
 	if ($conn->query($sql) === TRUE) {
@@ -225,7 +225,7 @@ function yesApprove($conn, $approve, $transID, $accID)
 	} else {
 		echo "Error updating record: " . $conn->error;
 	}
-	
+
 	$conn->close();
 
 	header("location: ../adminview.php");
@@ -244,7 +244,7 @@ function noApprove($conn, $approve, $transID, $accID)
 	} else {
 		echo "Error updating record: " . $conn->error;
 	}
-	
+
 	$conn->close();
 
 	header("location: ../adminview.php");
@@ -261,9 +261,76 @@ function delTransaction($conn, $transID){
 	} else {
 		echo "Error deleting record: " . $conn->error;
 	}
-	
+
 	$conn->close();
-	
+
 	header("location: ../adminview.php");
 	exit();
+}
+
+function createTransaction($conn, $transtype, $fromAcc, $toAcc, $amount)
+{
+	if ($transtype == 0) { //deposit
+		$sql = "INSERT INTO transaction_type (TRANSFERS, DEPOSITS, WITHDRAWALS)
+		VALUES (NULL, $transtype, NULL)";
+	}
+	elseif ($transtype == 1) { //Withdraw
+		$sql = "INSERT INTO transaction_type (TRANSFERS, DEPOSITS, WITHDRAWALS)
+		VALUES (NULL, NULL, $transtype)";
+	}
+	elseif ($transtype == 2) { //Transfer
+		$sql = "INSERT INTO transaction_type (TRANSFERS, DEPOSITS, WITHDRAWALS)
+		VALUES ($transtype, NULL, NULL)";
+	}
+
+	session_start();
+	$userid = $_SESSION['userid'];
+
+	if ($conn->query($sql) === TRUE){
+		$tid = $conn->insert_id;
+
+		if ($transtype == 0) { //deposit
+			$sql2 = "INSERT INTO transactions (AMOUNT_OF_TRANSACTION, TRANSACTION_APPROVAL, TRANSACTION_FROM, TRANSACTION_TO, ACCOUNTS_ACCOUNTS_ID,TRANSACTION_TYPE_TRANSACTION_TYPE_ID)
+							VALUES ($amount, 'No', 'Deposit', $toAcc, $fromAcc, $tid)";
+		}
+		elseif ($transtype == 1) { //Withdraw
+			$sql2 = "INSERT INTO transactions (AMOUNT_OF_TRANSACTION, TRANSACTION_APPROVAL, TRANSACTION_FROM, TRANSACTION_TO, ACCOUNTS_ACCOUNTS_ID,TRANSACTION_TYPE_TRANSACTION_TYPE_ID)
+							VALUES ($amount, 'No', $fromAcc, 'Withdraw', $fromAcc, $tid)";
+		}
+		elseif ($transtype == 2) { //Transfer
+			$sql2 = "INSERT INTO transactions (AMOUNT_OF_TRANSACTION, TRANSACTION_APPROVAL, TRANSACTION_FROM, TRANSACTION_TO, ACCOUNTS_ACCOUNTS_ID,TRANSACTION_TYPE_TRANSACTION_TYPE_ID)
+							VALUES ($amount, 'No', $fromAcc, $toAcc, $fromAcc, $tid)";
+		}
+
+
+			if ($conn->query($sql2) === TRUE) {
+				echo "New record created successfully";
+			} else {
+				echo "Error: " . $sql2 . "<br>" . $conn->error;
+			}
+
+		echo "New record created successfully";
+	} else {
+		echo "Error: " . $sql . "<br>" . $conn->error;
+	}
+	$conn->close();
+
+	header("location: ../home.php?error=none");
+	exit();
+}
+
+function modifyAccount($conn, $accountId, $amount, $mod)
+{
+	if ($mod == 1) { //add to balance
+		$sql = "UPDATE accounts set ACCOUNT_BALANCE = ACCOUNT_BALANCE + $amount WHERE ACCOUNTS_ID = $accountId";
+	}
+	else if ($mod == 2) { //sub from balance
+		$sql = "UPDATE accounts set ACCOUNT_BALANCE = ACCOUNT_BALANCE - $amount WHERE ACCOUNTS_ID = $accountId";
+	}
+
+	if ($conn->query($sql) === TRUE){
+			echo "New record created successfully";
+	} else {
+		echo "Error: " . $sql . "<br>" . $conn->error;
+	}
 }
