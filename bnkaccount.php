@@ -1,6 +1,6 @@
 <?php
- include_once 'header.php';
- include_once 'includes/function-inc.php';
+include_once 'header.php';
+include_once 'includes/function-inc.php';
 ?>
 
 <!DOCTYPE html>
@@ -41,7 +41,7 @@
 
         .main {
             max-width: 500px;
-            margin: auto;
+            margin-left: 300px;
             /* Same as the width of the sidenav */
         }
 
@@ -59,14 +59,14 @@
 
 <body>
 
-    
+
 
     <div class="main">
         <div class="w3-container" style="width: 500px">
             <div class="w3-panel w3-card">
                 <?php
                 if (isset($_SESSION["username"])) {
-                 echo '<form action = "includes/bnkaccount-inc.php" method ="POST">
+                    echo '<form action = "includes/bnkaccount-inc.php" method ="POST">
                   <label>Create a Checking or Savings Account:</label>
                   <br>
                   <select type = "text" name = "banktype" >
@@ -76,7 +76,6 @@
                   <button type="submit" class="btn btn-black" name="submit">Create</button>
                  
                   </form>';
-                  
                 } else {
                     echo " <h1 style = 'margin-top: 10%;'>Please login or Register to access the webpage</h1>";
                 }

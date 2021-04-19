@@ -8,6 +8,7 @@ include_once 'header.php';
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="modal.css">
+        
     <style>
         body {
             font-family: "Lato", sans-serif;
