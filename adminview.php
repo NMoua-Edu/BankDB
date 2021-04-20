@@ -41,6 +41,11 @@
             margin-left: 300px;
             /* Same as the width of the sidenav */
         }
+        .trantable{
+            table-layout: fixed;
+            width:100%;
+            
+        }
 
         @media screen and (max-height: 450px) {
             .sidenav {
@@ -69,7 +74,7 @@
             $_SESSION['transID'] = $row['TRANSACTIONS_ID'];
             $_SESSION['bankID'] = $row['ACCOUNTS_ACCOUNTS_ID'];
           echo "<form action = 'includes/adminapprove.php' method ='POST'>
-                <table style ='width:100%'>
+                <table class = 'trantable'>
                 <tr>
                   <th> Trasnaction ID: </th>
                   <th> Amount: </th>

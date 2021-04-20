@@ -47,6 +47,10 @@ include_once 'header.php';
         .logouterror{
             margin-left: 300px;
         }
+        .trantable{
+            table-layout: fixed;
+            width:100%;
+        }
 
         @media screen and (max-height: 450px) {
             .sidenav {
@@ -118,7 +122,7 @@ include_once 'header.php';
                             $tranAccountID = $row['ACCOUNTS_ACCOUNTS_ID'];
 
                             echo "<form action = 'includes/adminapprove.php' method ='POST'>
-                                    <table style ='width:100%'>
+                                    <table class = 'trantable'>
                                     <tr>
                                         <th> Trasnaction ID: </th>
                                         <th> Amount: </th>
